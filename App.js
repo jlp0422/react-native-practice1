@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { Alert, StyleSheet, Text, View, Image, TextInput, Button, ScrollView } from 'react-native';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -9,6 +9,11 @@ export default class App extends React.Component {
       text: ''
     }
     this.onChange = this.onChange.bind(this)
+    this.onPressButton = this.onPressButton.bind(this)
+  }
+
+  onPressButton() {
+    Alert.alert('You clicked me!')
   }
 
   onChange(text) {
@@ -16,8 +21,9 @@ export default class App extends React.Component {
   }
   render() {
     const { text } = this.state
-    const { onChange } = this
+    const { onChange, onPressButton } = this
     return (
+      <ScrollView>
       <View style={styles.container}>
         <Text>This is my very simple app of names!</Text>
         <TextInput
@@ -28,10 +34,13 @@ export default class App extends React.Component {
         <Text style={{ padding: 10, fontSize: 30 }}>
           {text.split(' ').map(word => word && '🍕').join(' ')}
         </Text>
+        <Button title="Click me" onPress={ onPressButton } />
         <Text style={styles.name1}>Jeremy</Text>
         <Text style={styles.name2}>Evan</Text>
-        <Text style={styles.name3}>Rachel</Text>
+        <Text style={styles.name3}>Carolyn</Text>
+        <Text style={styles.name3}>Charles Bea</Text>
       </View>
+      </ScrollView>
       // <View style={{
       //   flex: 1,
       //   flexDirection: 'column',
@@ -55,17 +64,18 @@ const styles = StyleSheet.create({
   },
   name1: {
     color: 'green',
-    fontSize: 30
+    fontSize: 90
   },
   name2: {
     color: 'blue',
     fontWeight: 'bold',
-    fontSize: 30
+    fontSize: 90
   },
   name3: {
     color: 'red',
     textDecorationLine: 'underline',
-    fontSize: 30
+    fontSize: 90,
+    textAlign: 'center'
   }
 });
 
